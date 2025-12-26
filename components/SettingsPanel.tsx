@@ -63,7 +63,8 @@ export function SettingsPanel({
   useEffect(() => {
     const detected = detectProvider(settings.baseUrl);
     setSelectedProvider(detected);
-    if (detected === "custom" || !API_PRESETS[detected].models.includes(settings.model)) {
+    const models = API_PRESETS[detected].models as readonly string[];
+    if (detected === "custom" || !models.includes(settings.model)) {
       setCustomModel(settings.model);
     }
   }, [settings]);
